@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funny Text Animation with Falling Emojis</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            overflow: hidden; /* Prevent scrollbars from showing */
+        }
+
+        .animated-text {
+            font-size: 3rem;
+            color: #fff;
+            position: absolute; /* Allows for movement around the screen */
+            animation: circularMovement 8s infinite linear,
+                       bounce 1s infinite alternate ease-in-out,
+                       spin 5s infinite linear,
+                       colorChange 3s infinite alternate,
+                       shake 0.2s infinite,
+                       scale 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes circularMovement {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(200px, 100px); }
+            50% { transform: translate(0, 200px); }
+            75% { transform: translate(-200px, 100px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-80px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes colorChange {
+            0% { color: #ff6347; }
+            25% { color: #ffd700; }
+            50% { color: #00ff7f; }
+            75% { color: #1e90ff; }
+            100% { color: #ff1493; }
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes scale {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Falling emoji styles */
+        .emoji {
+            position: absolute;
+            top: -50px; /* Start the emoji above the screen */
+            font-size: 2rem; /* Adjust size as needed */
+            animation: fall linear infinite;
+            opacity: 0.8; /* Slight transparency for effect */
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px); opacity: 1; }
+            100% { transform: translateY(110vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-text">buang james og mico</div>
+
+    <!-- Falling emojis -->
+    <script>
+        const emojiList = ['😀', '😂', '🤣', '😜', '😎', '🤪', '😇', '🤩'];
+        const emojiCount = 30; // Number of falling emojis
+
+        for (let i = 0; i < emojiCount; i++) {
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            emoji.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+            emoji.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            emoji.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random fall speed
+            document.body.appendChild(emoji);
+        }
+    </script>
+</body>
+  </html>
